@@ -44,7 +44,7 @@ const featuredContent = [
 
 export default function Content() {
     return (
-        <section id="content" className="relative py-24 lg:py-32 bg-[#050505]">
+        <section id="content" className="relative py-16 sm:py-20 lg:py-28 bg-[#050505]">
             {/* Background */}
             <div className="absolute inset-0">
                 <div
@@ -56,37 +56,37 @@ export default function Content() {
                 />
             </div>
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Header */}
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
+                <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-4 sm:mb-6">
                         <span className="text-sm text-cyan-400">🎧 Content Library</span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6">
                         <span className="text-white">Explore Our Vast</span>
                         <br />
                         <span className="gradient-text">Content Library</span>
                     </h2>
-                    <p className="text-gray-400 text-lg">
+                    <p className="text-gray-400 text-base sm:text-lg px-4">
                         Thousands of hours of carefully curated spiritual content,
                         from Quran recitations to inspiring lectures and beautiful nasheeds.
                     </p>
                 </div>
 
                 {/* Categories Grid */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-12 sm:mb-16">
                     {categories.map((category, index) => (
                         <div
                             key={category.title}
-                            className={`group relative p-6 rounded-2xl bg-gradient-to-br ${category.color} border ${category.borderColor} card-hover cursor-pointer`}
+                            className={`group relative p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br ${category.color} border ${category.borderColor} card-hover cursor-pointer`}
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                            <div className="text-5xl mb-4">{category.image}</div>
-                            <h3 className="text-lg font-semibold text-white mb-2">{category.title}</h3>
-                            <p className="text-gray-400 text-sm mb-3">{category.description}</p>
+                            <div className="text-3xl sm:text-4xl lg:text-5xl mb-3 sm:mb-4">{category.image}</div>
+                            <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">{category.title}</h3>
+                            <p className="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">{category.description}</p>
                             <div className="flex items-center justify-between">
-                                <span className="text-xs text-gray-500">{category.count}</span>
-                                <svg className="w-5 h-5 text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <span className="text-[10px] sm:text-xs text-gray-500">{category.count}</span>
+                                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </div>
@@ -95,33 +95,33 @@ export default function Content() {
                 </div>
 
                 {/* Featured Content */}
-                <div className="flex flex-col lg:flex-row gap-12 items-center">
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
                     {/* Left - Visual */}
-                    <div className="flex-1">
+                    <div className="flex-1 w-full max-w-md lg:max-w-none">
                         <div className="relative">
                             {/* Album Art Grid */}
-                            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                                <div className="space-y-4">
-                                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center text-7xl shadow-xl shadow-purple-500/20 animate-float">
+                            <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-sm sm:max-w-md mx-auto">
+                                <div className="space-y-3 sm:space-y-4">
+                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl shadow-xl shadow-purple-500/20 animate-float">
                                         🕋
                                     </div>
-                                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-cyan-600 to-cyan-800 flex items-center justify-center text-5xl shadow-xl shadow-cyan-500/20 animate-float" style={{ animationDelay: "1s" }}>
+                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-cyan-600 to-cyan-800 flex items-center justify-center text-4xl sm:text-5xl shadow-xl shadow-cyan-500/20 animate-float" style={{ animationDelay: "1s" }}>
                                         📖
                                     </div>
                                 </div>
-                                <div className="space-y-4 pt-8">
-                                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center text-5xl shadow-xl shadow-amber-500/20 animate-float" style={{ animationDelay: "0.5s" }}>
+                                <div className="space-y-3 sm:space-y-4 pt-6 sm:pt-8">
+                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center text-4xl sm:text-5xl shadow-xl shadow-amber-500/20 animate-float" style={{ animationDelay: "0.5s" }}>
                                         🌙
                                     </div>
-                                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-7xl shadow-xl shadow-emerald-500/20 animate-float" style={{ animationDelay: "1.5s" }}>
+                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl shadow-xl shadow-emerald-500/20 animate-float" style={{ animationDelay: "1.5s" }}>
                                         ✨
                                     </div>
                                 </div>
                             </div>
 
                             {/* Floating Badge */}
-                            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 glass rounded-full">
-                                <div className="flex items-center gap-3">
+                            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 sm:px-6 py-2 sm:py-3 glass rounded-full">
+                                <div className="flex items-center gap-2 sm:gap-3">
                                     <div className="audio-wave flex items-end h-4">
                                         <span className="!w-1 !h-2" />
                                         <span className="!w-1 !h-4" />
@@ -129,7 +129,7 @@ export default function Content() {
                                         <span className="!w-1 !h-3" />
                                         <span className="!w-1 !h-2" />
                                     </div>
-                                    <span className="text-sm text-white">Now Playing</span>
+                                    <span className="text-xs sm:text-sm text-white">Now Playing</span>
                                 </div>
                             </div>
                         </div>
@@ -137,13 +137,13 @@ export default function Content() {
 
                     {/* Right - Track List */}
                     <div className="flex-1 w-full">
-                        <h3 className="text-2xl font-bold text-white mb-6">Trending This Week</h3>
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Trending This Week</h3>
 
-                        <div className="space-y-3">
+                        <div className="space-y-2 sm:space-y-3">
                             {featuredContent.map((track, index) => (
                                 <div
                                     key={track.title}
-                                    className="group flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-purple-500/20"
+                                    className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-purple-500/20"
                                 >
                                     {/* Track Number */}
                                     <div className="w-8 h-8 flex items-center justify-center text-gray-500 group-hover:hidden">

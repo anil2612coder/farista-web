@@ -69,13 +69,13 @@ const socialLinks = [
 export default function Footer() {
     return (
         <footer className="relative bg-[#050505] border-t border-white/5">
-            <div className="container mx-auto px-6 py-16">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-16">
                 {/* Main Footer Content */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-12 mb-12">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-12">
                     {/* Brand Column */}
-                    <div className="col-span-2">
-                        <Link href="/" className="flex items-center gap-3 mb-6">
-                            <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-xl">
+                    <div className="col-span-2 mb-4 sm:mb-0">
+                        <Link href="/" className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                            <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center overflow-hidden rounded-lg sm:rounded-xl">
                                 <Image
                                     src="/farishta_logo.png"
                                     alt="Farishta FM Logo"
@@ -84,24 +84,24 @@ export default function Footer() {
                                     className="object-cover"
                                 />
                             </div>
-                            <span className="text-xl font-bold">
+                            <span className="text-lg sm:text-xl font-bold">
                                 <span className="gradient-text">Farishta</span>
                                 <span className="text-white/90"> FM</span>
                             </span>
                         </Link>
-                        <p className="text-gray-400 mb-6 max-w-xs">
+                        <p className="text-gray-400 mb-4 sm:mb-6 max-w-xs text-sm sm:text-base">
                             Your spiritual audio companion. Stream Quran, lectures, nasheeds, and more.
                         </p>
 
                         {/* Social Links */}
-                        <div className="flex gap-4">
+                        <div className="flex gap-3 sm:gap-4">
                             {socialLinks.map((social) => (
                                 <Link
                                     key={social.name}
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-gradient-to-r hover:from-purple-600 hover:to-cyan-600 hover:text-white transition-all"
+                                    className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/5 text-gray-400 hover:bg-gradient-to-r hover:from-purple-600 hover:to-cyan-600 hover:text-white transition-all"
                                     aria-label={social.name}
                                 >
                                     {social.icon}
@@ -112,13 +112,13 @@ export default function Footer() {
 
                     {/* Product Links */}
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Product</h3>
-                        <ul className="space-y-3">
+                        <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Product</h3>
+                        <ul className="space-y-2 sm:space-y-3">
                             {footerLinks.product.map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-400 hover:text-white transition-colors"
+                                        className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -129,13 +129,13 @@ export default function Footer() {
 
                     {/* Company Links */}
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Company</h3>
-                        <ul className="space-y-3">
+                        <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Company</h3>
+                        <ul className="space-y-2 sm:space-y-3">
                             {footerLinks.company.map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-400 hover:text-white transition-colors"
+                                        className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -146,13 +146,13 @@ export default function Footer() {
 
                     {/* Support Links */}
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Support</h3>
-                        <ul className="space-y-3">
+                        <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Support</h3>
+                        <ul className="space-y-2 sm:space-y-3">
                             {footerLinks.support.map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-400 hover:text-white transition-colors"
+                                        className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -163,13 +163,13 @@ export default function Footer() {
 
                     {/* Legal Links */}
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Legal</h3>
-                        <ul className="space-y-3">
+                        <h3 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Legal</h3>
+                        <ul className="space-y-2 sm:space-y-3">
                             {footerLinks.legal.map((link) => (
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-400 hover:text-white transition-colors"
+                                        className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -180,21 +180,21 @@ export default function Footer() {
                 </div>
 
                 {/* Newsletter */}
-                <div className="py-8 border-t border-b border-white/5 mb-8">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div>
-                            <h3 className="text-white font-semibold mb-2">Subscribe to our newsletter</h3>
-                            <p className="text-gray-400 text-sm">Stay updated with new content and features</p>
+                <div className="py-6 sm:py-8 border-t border-b border-white/5 mb-6 sm:mb-8">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
+                        <div className="text-center md:text-left">
+                            <h3 className="text-white font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Subscribe to our newsletter</h3>
+                            <p className="text-gray-400 text-xs sm:text-sm">Stay updated with new content and features</p>
                         </div>
-                        <form className="flex gap-3 w-full md:w-auto">
+                        <form className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full md:w-auto">
                             <input
                                 type="email"
                                 placeholder="Enter your email"
-                                className="flex-1 md:w-64 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                                className="flex-1 md:w-56 lg:w-64 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors text-sm"
                             />
                             <button
                                 type="submit"
-                                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/20 transition-all"
+                                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-lg sm:rounded-xl hover:shadow-lg hover:shadow-purple-500/20 transition-all text-sm"
                             >
                                 Subscribe
                             </button>
@@ -203,11 +203,11 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-gray-500 text-sm">
-                    <div>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-gray-500 text-xs sm:text-sm">
+                    <div className="text-center md:text-left">
                         © {new Date().getFullYear()} Farishta FM. All rights reserved.
                     </div>
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4 sm:gap-6">
                         <span>Made with 💜 for the Ummah</span>
                     </div>
                 </div>

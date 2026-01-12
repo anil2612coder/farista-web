@@ -24,8 +24,8 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="container mx-auto px-6 pt-24 pb-16 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-20 relative z-10">
+                <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
                     {/* Text Content */}
                     <div className="flex-1 text-center lg:text-left animate-slide-up">
                         {/* Badge */}
@@ -62,24 +62,24 @@ export default function Hero() {
                         </div>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                             <Link
                                 href="#download"
-                                className="btn-shine group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-purple-500/30 transition-all hover:scale-105"
+                                className="btn-shine group flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-purple-500/30 transition-all hover:scale-105 text-sm sm:text-base"
                             >
-                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
                                 </svg>
                                 Download Free
-                                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </Link>
                             <Link
                                 href="#features"
-                                className="flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all"
+                                className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all text-sm sm:text-base"
                             >
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
                                 Learn More
@@ -87,18 +87,18 @@ export default function Hero() {
                         </div>
 
                         {/* Stats */}
-                        <div className="flex gap-8 mt-12 justify-center lg:justify-start">
-                            <div className="text-center">
-                                <div className="text-3xl font-bold gradient-text">500K+</div>
-                                <div className="text-gray-500 text-sm">Downloads</div>
+                        <div className="flex flex-wrap gap-6 sm:gap-8 mt-10 sm:mt-12 justify-center lg:justify-start">
+                            <div className="text-center min-w-[80px]">
+                                <div className="text-2xl sm:text-3xl font-bold gradient-text">500K+</div>
+                                <div className="text-gray-500 text-xs sm:text-sm mt-1">Downloads</div>
                             </div>
-                            <div className="text-center">
-                                <div className="text-3xl font-bold gradient-text">4.9</div>
-                                <div className="text-gray-500 text-sm">App Rating</div>
+                            <div className="text-center min-w-[80px]">
+                                <div className="text-2xl sm:text-3xl font-bold gradient-text">4.9</div>
+                                <div className="text-gray-500 text-xs sm:text-sm mt-1">App Rating</div>
                             </div>
-                            <div className="text-center">
-                                <div className="text-3xl font-bold gradient-text">50+</div>
-                                <div className="text-gray-500 text-sm">Countries</div>
+                            <div className="text-center min-w-[80px]">
+                                <div className="text-2xl sm:text-3xl font-bold gradient-text">50+</div>
+                                <div className="text-gray-500 text-xs sm:text-sm mt-1">Countries</div>
                             </div>
                         </div>
                     </div>

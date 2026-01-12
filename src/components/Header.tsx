@@ -26,14 +26,14 @@ export default function Header() {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? "glass py-3 shadow-lg shadow-purple-500/10"
-                    : "bg-transparent py-5"
+                ? "glass py-2 sm:py-3 shadow-lg shadow-purple-500/10"
+                : "bg-transparent py-3 sm:py-5"
                 }`}
         >
-            <nav className="container mx-auto px-6 flex items-center justify-between">
+            <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-3 group">
-                    <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-xl">
+                <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
+                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center overflow-hidden rounded-lg sm:rounded-xl">
                         <Image
                             src="/farishta_logo.png"
                             alt="Farishta FM Logo"
@@ -43,7 +43,7 @@ export default function Header() {
                             priority
                         />
                     </div>
-                    <span className="text-xl font-bold">
+                    <span className="text-lg sm:text-xl font-bold">
                         <span className="gradient-text">Farishta</span>
                         <span className="text-white/90"> FM</span>
                     </span>
@@ -107,16 +107,16 @@ export default function Header() {
             {/* Mobile Menu */}
             <div
                 className={`md:hidden absolute top-full left-0 right-0 glass transition-all duration-300 ${isMobileMenuOpen
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 -translate-y-4 pointer-events-none"
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 -translate-y-4 pointer-events-none"
                     }`}
             >
-                <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+                <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6 flex flex-col gap-2 sm:gap-4">
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-gray-300 hover:text-white transition-colors py-2"
+                            className="text-gray-300 hover:text-white transition-colors py-2 sm:py-2 text-sm sm:text-base"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             {link.name}
@@ -124,7 +124,7 @@ export default function Header() {
                     ))}
                     <Link
                         href="#download"
-                        className="mt-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full text-center"
+                        className="mt-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full text-center text-sm sm:text-base"
                         onClick={() => setIsMobileMenuOpen(false)}
                     >
                         Get the App

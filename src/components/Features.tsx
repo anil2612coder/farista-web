@@ -65,32 +65,32 @@ const features = [
 
 export default function Features() {
     return (
-        <section id="features" className="relative py-24 lg:py-32 bg-[#0a0a0a]">
+        <section id="features" className="relative py-16 sm:py-20 lg:py-28 bg-[#0a0a0a]">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
                 <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
             </div>
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Header */}
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
+                <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-4 sm:mb-6">
                         <span className="text-sm text-purple-400">✨ Features</span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6">
                         <span className="text-white">Everything You Need for</span>
                         <br />
                         <span className="gradient-text">Spiritual Growth</span>
                     </h2>
-                    <p className="text-gray-400 text-lg">
+                    <p className="text-gray-400 text-base sm:text-lg px-4">
                         Farishta FM brings together the best spiritual content in one beautiful app,
                         designed to make your journey towards peace effortless.
                     </p>
                 </div>
 
                 {/* Features Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                     {features.map((feature, index) => (
                         <div
                             key={feature.title}
@@ -100,17 +100,17 @@ export default function Features() {
                             {/* Gradient Border Effect */}
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
 
-                            <div className="relative p-8 rounded-2xl bg-[#111] border border-white/5 h-full">
+                            <div className="relative p-6 sm:p-8 rounded-2xl bg-[#111] border border-white/5 h-full">
                                 {/* Icon */}
-                                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} mb-6 text-white shadow-lg`}>
+                                <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${feature.gradient} mb-4 sm:mb-6 text-white shadow-lg`}>
                                     {feature.icon}
                                 </div>
 
                                 {/* Content */}
-                                <h3 className="text-xl font-semibold text-white mb-3">
+                                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">
                                     {feature.title}
                                 </h3>
-                                <p className="text-gray-400 leading-relaxed">
+                                <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
                                     {feature.description}
                                 </p>
 
