@@ -1,16 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
-import { 
-    FaBookQuran, 
-    FaMicrophone, 
-    FaMusic, 
-    FaHeart, 
-    FaDownload, 
+import {
+    FaBookQuran,
+    FaMicrophone,
+    FaMusic,
+    FaHeart,
+    FaDownload,
     FaClock,
-    FaArrowRight 
+    FaArrowRight
 } from "react-icons/fa6";
 import { HiSparkles } from "react-icons/hi";
 
@@ -59,7 +58,7 @@ const features = [
     },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -70,7 +69,7 @@ const containerVariants = {
     },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
@@ -216,7 +215,7 @@ export default function Features() {
                                         {feature.description}
                                     </p>
 
-                                  
+
                                 </div>
                             </motion.div>
                         );
