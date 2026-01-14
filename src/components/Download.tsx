@@ -1,14 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaGooglePlay } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 
-const containerVariants = {
+const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -19,7 +18,7 @@ const containerVariants = {
     },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
@@ -129,7 +128,7 @@ export default function Download() {
                         <span className="text-xs sm:text-sm md:text-base text-emerald-100 font-inter">Download Now</span>
                     </motion.div>
 
-                    
+
                     <motion.h2
                         variants={itemVariants}
                         className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 text-center font-outfit"
@@ -138,7 +137,7 @@ export default function Download() {
                         <span className="gradient-text block">Journey Today</span>
                     </motion.h2>
 
-                   
+
                     <motion.p
                         variants={itemVariants}
                         className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300  mx-auto mb-8 sm:mb-10 md:mb-12 px-4 font-inter leading-relaxed text-center relative top-3"
@@ -146,12 +145,12 @@ export default function Download() {
                         Download Farishta FM for free and unlock a world of spiritual content. Available on Android devices.
                     </motion.p>
 
-                   
+
                     <motion.div
                         variants={itemVariants}
                         className="flex flex-col relative top-10 sm:flex-row gap-3 sm:gap-4 md:gap-5 justify-center mb-8 sm:mb-10 md:mb-12 px-4"
                     >
-                       
+
                         <motion.div
                             whileHover={{ scale: 1.05, y: -5 }}
                             whileTap={{ scale: 0.95 }}
@@ -171,7 +170,7 @@ export default function Download() {
                         </motion.div>
                     </motion.div>
 
-                   
+
                     <motion.div
                         variants={itemVariants}
                         className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl glass mb-8 sm:mb-10 md:mb-12 relative top-12"
@@ -191,7 +190,7 @@ export default function Download() {
                         </div>
                     </motion.div>
 
-                 
+
                     <motion.div
                         variants={itemVariants}
                         className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-2 relative top-20"
