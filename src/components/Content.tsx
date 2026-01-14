@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 import { FaPlay, FaHeart, FaHeadphones, FaArrowRight } from "react-icons/fa";
 
@@ -51,7 +50,7 @@ const featuredContent = [
     { title: "Morning Adhkar", artist: "Various Artists", duration: "15:00", plays: "982K" },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -62,7 +61,7 @@ const containerVariants = {
     },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
         opacity: 1,
@@ -171,7 +170,7 @@ export default function Content() {
                                 <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-400 font-inter text-center">
                                     {category.count}
                                 </span>
-                               
+
                             </div>
                         </motion.div>
                     ))}
@@ -253,7 +252,7 @@ export default function Content() {
                                 </div>
                             </div>
 
-                         
+
                         </div>
                     </motion.div>
 
