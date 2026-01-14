@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { HiDownload, HiPlay } from "react-icons/hi";
 import { FaGooglePlay } from "react-icons/fa";
 import { IoArrowDown } from "react-icons/io5";
@@ -50,7 +50,7 @@ export default function Hero() {
         }
     }, [isWelcomeTyping]);
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -61,7 +61,7 @@ export default function Hero() {
         },
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
@@ -75,7 +75,7 @@ export default function Hero() {
     };
 
     // Hanging/Pendulum motion for phone
-    const hangingVariants = {
+    const hangingVariants: Variants = {
         animate: {
             rotate: [-8, 8, -8],
             y: [0, 20, 0],
@@ -92,7 +92,7 @@ export default function Hero() {
         },
     };
 
-    const orbVariants = {
+    const orbVariants: Variants = {
         animate: {
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -207,7 +207,7 @@ export default function Hero() {
                             </span>
                         </motion.h1>
 
-                       
+
                         <AnimatePresence>
                             {showDescription && (
                                 <motion.div
@@ -233,7 +233,7 @@ export default function Hero() {
                             )}
                         </AnimatePresence>
 
-                      
+
                         <AnimatePresence>
                             {!isDescTyping && (
                                 <motion.div
@@ -282,7 +282,7 @@ export default function Hero() {
                             )}
                         </AnimatePresence>
 
-                       
+
                         <AnimatePresence>
                             {!isDescTyping && (
                                 <motion.div
@@ -392,8 +392,6 @@ export default function Hero() {
                                     className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full"
                                     style={{
                                         backgroundColor: i % 2 === 0 ? 'rgba(5, 150, 105, 0.4)' : 'rgba(217, 119, 6, 0.4)',
-                                    }}
-                                    style={{
                                         top: `${15 + i * 20}%`,
                                         left: i % 2 === 0 ? "-8%" : "108%",
                                     }}
@@ -415,7 +413,7 @@ export default function Hero() {
                 </div>
             </motion.div>
 
-            
+
         </section>
     );
 }
