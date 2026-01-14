@@ -1,37 +1,46 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { FaPlay, FaHeart, FaHeadphones, FaArrowRight } from "react-icons/fa";
+
 const categories = [
     {
         title: "Quran Recitations",
         description: "Beautiful recitations from renowned Qaris",
         count: "114 Surahs",
         image: "🕌",
-        color: "from-purple-600/20 to-purple-800/20",
-        borderColor: "border-purple-500/20",
+        gradient: "from-emerald-600/30 to-teal-600/30",
+        borderColor: "border-emerald-500/30",
+        delay: 0,
     },
     {
         title: "Islamic Lectures",
         description: "Learn from world-renowned scholars",
         count: "5000+ Hours",
         image: "📚",
-        color: "from-cyan-600/20 to-cyan-800/20",
-        borderColor: "border-cyan-500/20",
+        gradient: "from-teal-600/30 to-cyan-600/30",
+        borderColor: "border-teal-500/30",
+        delay: 0.1,
     },
     {
         title: "Nasheeds",
         description: "Soul-stirring Islamic songs",
         count: "2000+ Tracks",
         image: "🎵",
-        color: "from-amber-600/20 to-amber-800/20",
-        borderColor: "border-amber-500/20",
+        gradient: "from-amber-600/30 to-yellow-600/30",
+        borderColor: "border-amber-500/30",
+        delay: 0.2,
     },
     {
         title: "Duas & Adhkar",
         description: "Daily supplications and remembrance",
         count: "500+ Duas",
         image: "🤲",
-        color: "from-emerald-600/20 to-emerald-800/20",
-        borderColor: "border-emerald-500/20",
+        gradient: "from-emerald-500/30 to-teal-500/30",
+        borderColor: "border-emerald-500/30",
+        delay: 0.3,
     },
 ];
 
@@ -42,155 +51,288 @@ const featuredContent = [
     { title: "Morning Adhkar", artist: "Various Artists", duration: "15:00", plays: "982K" },
 ];
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+        },
+    },
+};
+
 export default function Content() {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+
     return (
-        <section id="content" className="relative py-16 sm:py-20 lg:py-28 bg-[#050505]">
-            {/* Background */}
+        <section id="content" className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-[#050505] overflow-hidden">
+            {/* Animated Background */}
             <div className="absolute inset-0">
-                <div
-                    className="absolute inset-0 opacity-30"
+                <motion.div
+                    className="absolute inset-0 opacity-20 sm:opacity-30"
                     style={{
-                        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`
+                        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(5, 150, 105, 0.15) 0%, transparent 50%),
+                            radial-gradient(circle at 75% 75%, rgba(217, 119, 6, 0.15) 0%, transparent 50%)`
+                    }}
+                    animate={{
+                        opacity: [0.2, 0.3, 0.2],
+                    }}
+                    transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "easeInOut",
                     }}
                 />
             </div>
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 relative z-10">
                 {/* Section Header */}
-                <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-4 sm:mb-6">
-                        <span className="text-sm text-cyan-400">🎧 Content Library</span>
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6">
-                        <span className="text-white">Explore Our Vast</span>
-                        <br />
-                        <span className="gradient-text">Content Library</span>
-                    </h2>
-                    <p className="text-gray-400 text-base sm:text-lg px-4">
+                <motion.div
+                    ref={ref}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={containerVariants}
+                    className="text-center l mx-auto mb-10 sm:mb-12 md:mb-16"
+                >
+                    <motion.div
+                        variants={itemVariants}
+                        className="inline-flex items-center justify-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full glass mb-4 sm:mb-5 md:mb-6"
+                    >
+                        <FaHeadphones className="w-3 h-3 sm:w-4 sm:h-4 text-teal-400" />
+                        <span className="text-xs sm:text-sm md:text-base text-teal-100 font-inter">Content Library</span>
+                    </motion.div>
+                    <motion.h2
+                        variants={itemVariants}
+                        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 font-outfit text-center"
+                    >
+                        <span className="text-white block">Explore Our Vast</span>
+                        <span className="gradient-text block">Content Library</span>
+                    </motion.h2>
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-sm sm:text-base md:text-lg relative top-2 text-gray-300 px-2 sm:px-4 font-inter leading-relaxed text-center"
+                    >
                         Thousands of hours of carefully curated spiritual content,
                         from Quran recitations to inspiring lectures and beautiful nasheeds.
-                    </p>
-                </div>
+                    </motion.p>
+                </motion.div>
 
                 {/* Categories Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-12 sm:mb-16">
+                <motion.div
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={containerVariants}
+                    className="grid grid-cols-2 lg:grid-cols-4 gap-3 relative top-4 sm:top-6 sm:gap-4 md:gap-5 lg:gap-6 mb-10 sm:mb-12 md:mb-16"
+                >
                     {categories.map((category, index) => (
-                        <div
+                        <motion.div
                             key={category.title}
-                            className={`group relative p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br ${category.color} border ${category.borderColor} card-hover cursor-pointer`}
-                            style={{ animationDelay: `${index * 0.1}s` }}
+                            variants={itemVariants}
+                            custom={index}
+                            whileHover={{ y: -5, scale: 1.03 }}
+                            className={`group relative p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br ${category.gradient} border ${category.borderColor} cursor-pointer transition-all duration-300 hover:border-opacity-60 text-center`}
                         >
-                            <div className="text-3xl sm:text-4xl lg:text-5xl mb-3 sm:mb-4">{category.image}</div>
-                            <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">{category.title}</h3>
-                            <p className="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2">{category.description}</p>
-                            <div className="flex items-center justify-between">
-                                <span className="text-[10px] sm:text-xs text-gray-500">{category.count}</span>
-                                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
+                            <motion.div
+                                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-4 flex justify-center"
+                                animate={{
+                                    y: [0, -5, 0],
+                                }}
+                                transition={{
+                                    duration: 2 + index * 0.3,
+                                    repeat: Infinity,
+                                    delay: index * 0.2,
+                                    ease: "easeInOut",
+                                }}
+                            >
+                                {category.image}
+                            </motion.div>
+                            <h3 className="text-xs sm:text-sm md:text-base lg:text-lg relative top-2 font-semibold text-white mb-1 sm:mb-2 font-outfit text-center">
+                                {category.title}
+                            </h3>
+                            <p className="text-gray-300 text-[10px]  relative top-2 sm:text-xs md:text-sm mb-2 sm:mb-3 line-clamp-2 font-inter text-center">
+                                {category.description}
+                            </p>
+                            <div className="flex items-center justify-center gap-2 relative top-4">
+                                <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-400 font-inter text-center">
+                                    {category.count}
+                                </span>
+                               
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
                 {/* Featured Content */}
-                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+                <motion.div
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={containerVariants}
+                    className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center relative top-10"
+                >
                     {/* Left - Visual */}
-                    <div className="flex-1 w-full max-w-md lg:max-w-none">
+                    <motion.div
+                        variants={itemVariants}
+                        className="flex-1 w-full max-w-md lg:max-w-none flex justify-center"
+                    >
                         <div className="relative">
                             {/* Album Art Grid */}
-                            <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-sm sm:max-w-md mx-auto">
-                                <div className="space-y-3 sm:space-y-4">
-                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl shadow-xl shadow-purple-500/20 animate-float">
+                            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-10 max-w-sm sm:max-w-md mx-auto">
+                                <div className="space-y-3 sm:space-y-4 md:space-y-5">
+                                    <motion.div
+                                        className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl shadow-xl shadow-emerald-500/30"
+                                        animate={{
+                                            y: [0, -15, 0],
+                                        }}
+                                        transition={{
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
                                         🕋
-                                    </div>
-                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-cyan-600 to-cyan-800 flex items-center justify-center text-4xl sm:text-5xl shadow-xl shadow-cyan-500/20 animate-float" style={{ animationDelay: "1s" }}>
+                                    </motion.div>
+                                    <motion.div
+                                        className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-teal-600 to-cyan-700 flex items-center justify-center text-3xl sm:text-4xl md:text-5xl shadow-xl shadow-teal-500/30 relative top-5"
+                                        animate={{
+                                            y: [0, -15, 0],
+                                        }}
+                                        transition={{
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            delay: 1,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
                                         📖
-                                    </div>
+                                    </motion.div>
                                 </div>
-                                <div className="space-y-3 sm:space-y-4 pt-6 sm:pt-8">
-                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center text-4xl sm:text-5xl shadow-xl shadow-amber-500/20 animate-float" style={{ animationDelay: "0.5s" }}>
+                                <div className="space-y-3 sm:space-y-4 md:space-y-5 pt-6 sm:pt-8 md:pt-10">
+                                    <motion.div
+                                        className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-600 to-yellow-700 flex items-center justify-center text-3xl sm:text-4xl md:text-5xl shadow-xl shadow-amber-500/30"
+                                        animate={{
+                                            y: [0, -15, 0],
+                                        }}
+                                        transition={{
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            delay: 0.5,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
                                         🌙
-                                    </div>
-                                    <div className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-5xl sm:text-6xl lg:text-7xl shadow-xl shadow-emerald-500/20 animate-float" style={{ animationDelay: "1.5s" }}>
+                                    </motion.div>
+                                    <motion.div
+                                        className="aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl shadow-xl shadow-emerald-500/30 relative top-5"
+                                        animate={{
+                                            y: [0, -15, 0],
+                                        }}
+                                        transition={{
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            delay: 1.5,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
                                         ✨
-                                    </div>
+                                    </motion.div>
                                 </div>
                             </div>
 
-                            {/* Floating Badge */}
-                            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 sm:px-6 py-2 sm:py-3 glass rounded-full">
-                                <div className="flex items-center gap-2 sm:gap-3">
-                                    <div className="audio-wave flex items-end h-4">
-                                        <span className="!w-1 !h-2" />
-                                        <span className="!w-1 !h-4" />
-                                        <span className="!w-1 !h-2" />
-                                        <span className="!w-1 !h-3" />
-                                        <span className="!w-1 !h-2" />
-                                    </div>
-                                    <span className="text-xs sm:text-sm text-white">Now Playing</span>
-                                </div>
-                            </div>
+                         
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right - Track List */}
-                    <div className="flex-1 w-full">
-                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Trending This Week</h3>
+                    <motion.div
+                        variants={itemVariants}
+                        className="flex-1 w-full"
+                    >
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-5 md:mb-6 text-center lg:text-left font-outfit">
+                            Trending This Week
+                        </h3>
 
-                        <div className="space-y-2 sm:space-y-3">
+                        <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 relative top-5">
                             {featuredContent.map((track, index) => (
-                                <div
+                                <motion.div
                                     key={track.title}
-                                    className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-purple-500/20"
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                                    transition={{ delay: 0.5 + index * 0.1 }}
+                                    whileHover={{ x: 5, scale: 1.02 }}
+                                    className="group flex items-center gap-2 sm:gap-4 md:gap-6 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer border border-transparent hover:border-emerald-500/30 "
                                 >
                                     {/* Track Number */}
-                                    <div className="w-8 h-8 flex items-center justify-center text-gray-500 group-hover:hidden">
+                                    <motion.div
+                                        className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-gray-500 group-hover:hidden text-xs sm:text-sm font-inter"
+                                        whileHover={{ scale: 1.1 }}
+                                    >
                                         {String(index + 1).padStart(2, '0')}
-                                    </div>
-                                    <div className="w-8 h-8 hidden items-center justify-center text-purple-400 group-hover:flex">
-                                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
-                                    </div>
+                                    </motion.div>
+                                    <motion.div
+                                        className="w-6 h-6 sm:w-8 sm:h-8 hidden items-center justify-center text-emerald-400 group-hover:flex"
+                                        whileHover={{ scale: 1.1 }}
+                                    >
+                                        <FaPlay className="w-3 h-3 sm:w-4 sm:h-4" />
+                                    </motion.div>
 
                                     {/* Track Info */}
                                     <div className="flex-1 min-w-0">
-                                        <div className="text-white font-medium truncate">{track.title}</div>
-                                        <div className="text-gray-500 text-sm truncate">{track.artist}</div>
+                                        <div className="text-white font-medium truncate text-sm sm:text-base font-inter">
+                                            {track.title}
+                                        </div>
+                                        <div className="text-gray-400 text-xs sm:text-sm truncate font-inter">
+                                            {track.artist}
+                                        </div>
                                     </div>
 
                                     {/* Plays */}
-                                    <div className="text-gray-500 text-sm hidden sm:block">
+                                    <div className="text-gray-400 text-xs sm:text-sm hidden sm:block font-inter">
                                         {track.plays} plays
                                     </div>
 
                                     {/* Duration */}
-                                    <div className="text-gray-500 text-sm">
+                                    <div className="text-gray-400 text-xs sm:text-sm font-inter">
                                         {track.duration}
                                     </div>
 
                                     {/* Actions */}
-                                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button className="p-2 hover:bg-white/10 rounded-full text-gray-400 hover:text-white">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                            </svg>
+                                    <motion.div
+                                        className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                                        whileHover={{ scale: 1.1 }}
+                                    >
+                                        <button className="p-1.5 sm:p-2 hover:bg-white/10 rounded-full text-gray-400 hover:text-emerald-400 transition-colors">
+                                            <FaHeart className="w-3 h-3 sm:w-4 sm:h-4" />
                                         </button>
-                                    </div>
-                                </div>
+                                    </motion.div>
+                                </motion.div>
                             ))}
                         </div>
 
-                        <button className="mt-6 w-full py-4 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:border-purple-500/50 transition-all flex items-center justify-center gap-2">
-                            <span>View All Content</span>
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+                        {/* <motion.button
+                            whileHover={{ scale: 1.02, x: 5 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="mt-4 sm:mt-6 w-full py-3 sm:py-4 rounded-xl border border-emerald-500/30 text-gray-300 hover:text-white hover:border-emerald-500/60 hover:bg-emerald-500/10 transition-all flex items-center justify-center gap-2 font-inter"
+                        >
+                            <span className="text-sm sm:text-base">View All Content</span>
+                            <FaArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                        </motion.button> */}
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
     );

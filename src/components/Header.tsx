@@ -3,18 +3,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { HiMenu, HiX, HiDownload } from "react-icons/hi";
+import { FiMenu, FiX } from "react-icons/fi";
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { scrollY } = useScroll();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        setIsScrolled(latest > 50);
+    });
 
     const navLinks = [
         { name: "Features", href: "#features" },
@@ -23,114 +23,268 @@ export default function Header() {
         { name: "Download", href: "#download" },
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: -20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 10,
+            },
+        },
+    };
+
+    const mobileMenuVariants = {
+        closed: {
+            opacity: 0,
+            height: 0,
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut",
+            },
+        },
+        open: {
+            opacity: 1,
+            height: "auto",
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut",
+                staggerChildren: 0.05,
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    const mobileItemVariants = {
+        closed: {
+            opacity: 0,
+            x: -20,
+        },
+        open: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 24,
+            },
+        },
+    };
+
     return (
-        <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                ? "glass py-2 sm:py-3 shadow-lg shadow-purple-500/10"
-                : "bg-transparent py-3 sm:py-5"
-                }`}
+        <motion.header
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+                isScrolled
+                    ? "glass py-2 sm:py-3 shadow-lg shadow-purple-500/10"
+                    : "bg-transparent py-3 sm:py-4 md:py-4"
+            }`}
         >
-            <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <motion.nav
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+            >
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                    <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center overflow-hidden rounded-lg sm:rounded-xl">
-                        <Image
-                            src="/farishta_logo.png"
-                            alt="Farishta FM Logo"
-                            width={40}
-                            height={40}
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                    <span className="text-lg sm:text-xl font-bold">
-                        <span className="gradient-text">Farishta</span>
-                        <span className="text-white/90"> FM</span>
-                    </span>
-                </Link>
+                <motion.div variants={itemVariants}>
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 sm:gap-3 group relative"
+                    >
+                        <motion.div
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl"
+                        >
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 rounded-xl sm:rounded-2xl"
+                                animate={{
+                                    opacity: [0.5, 1, 0.5],
+                                }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                            />
+                            <Image
+                                src="/farishta_logo.png"
+                                alt="Farishta FM Logo"
+                                width={56}
+                                height={56}
+                                className="object-cover relative z-10"
+                                priority
+                            />
+                        </motion.div>
+                        <motion.span
+                            className="text-xl sm:text-2xl md:text-3xl font-bold"
+                            whileHover={{ scale: 1.05 }}
+                        >
+                            <span className="gradient-text font-outfit">Farishta</span>
+                            <span className="text-white/90 font-outfit"> FM</span>
+                        </motion.span>
+                    </Link>
+                </motion.div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <Link
+                <motion.div
+                    variants={itemVariants}
+                    className="hidden md:flex items-center gap-6 lg:gap-8 xl:gap-10"
+                >
+                    {navLinks.map((link, index) => (
+                        <motion.div
                             key={link.name}
-                            href={link.href}
-                            className="text-gray-300 hover:text-white transition-colors relative group"
+                            variants={itemVariants}
+                            custom={index}
                         >
-                            {link.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transition-all group-hover:w-full" />
-                        </Link>
+                            <Link
+                                href={link.href}
+                                className="text-gray-300 hover:text-white transition-colors relative group font-inter text-sm lg:text-base font-medium"
+                            >
+                                <motion.span
+                                    className="block"
+                                    whileHover={{ y: -2 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                >
+                                    {link.name}
+                                </motion.span>
+                                <motion.span
+                                    className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"
+                                    initial={{ width: 0 }}
+                                    whileHover={{ width: "100%" }}
+                                    transition={{ duration: 0.3 }}
+                                />
+                            </Link>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
                 {/* CTA Button */}
-                <div className="hidden md:block">
-                    <Link
-                        href="#download"
-                        className="btn-shine relative px-6 py-2.5 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-purple-500/30 transition-all hover:scale-105"
+                <motion.div
+                    variants={itemVariants}
+                    className="hidden md:block"
+                >
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        Get the App
-                    </Link>
-                </div>
+                        <Link
+                            href="https://play.google.com/store/apps/details?id=com.farishta.app&pcampaignid=web_share"
+                            target="_blank"
+                            className="btn-shine relative px-5 py-2.5 lg:px-6 lg:py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-purple-500/30 transition-all font-inter text-sm lg:text-base flex items-center gap-2"
+                        >
+                            <HiDownload className="w-4 h-4 lg:w-5 lg:h-5" />
+                            <span>Get the App</span>
+                        </Link>
+                    </motion.div>
+                </motion.div>
 
                 {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden text-white p-2"
+                <motion.button
+                    variants={itemVariants}
+                    className="md:hidden text-white p-2.5 rounded-lg hover:bg-white/10 transition-colors"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label="Toggle menu"
+                    whileTap={{ scale: 0.9 }}
                 >
-                    <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
+                    <AnimatePresence mode="wait">
                         {isMobileMenuOpen ? (
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M6 18L18 6M6 6l12 12"
-                            />
+                            <motion.div
+                                key="close"
+                                initial={{ rotate: -90, opacity: 0 }}
+                                animate={{ rotate: 0, opacity: 1 }}
+                                exit={{ rotate: 90, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <FiX className="w-6 h-6" />
+                            </motion.div>
                         ) : (
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
+                            <motion.div
+                                key="menu"
+                                initial={{ rotate: 90, opacity: 0 }}
+                                animate={{ rotate: 0, opacity: 1 }}
+                                exit={{ rotate: -90, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <FiMenu className="w-6 h-6" />
+                            </motion.div>
                         )}
-                    </svg>
-                </button>
-            </nav>
+                    </AnimatePresence>
+                </motion.button>
+            </motion.nav>
 
             {/* Mobile Menu */}
-            <div
-                className={`md:hidden absolute top-full left-0 right-0 glass transition-all duration-300 ${isMobileMenuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 -translate-y-4 pointer-events-none"
-                    }`}
-            >
-                <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6 flex flex-col gap-2 sm:gap-4">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="text-gray-300 hover:text-white transition-colors py-2 sm:py-2 text-sm sm:text-base"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                    <Link
-                        href="#download"
-                        className="mt-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full text-center text-sm sm:text-base"
-                        onClick={() => setIsMobileMenuOpen(false)}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        variants={mobileMenuVariants}
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        className="md:hidden absolute top-full left-0 right-0 glass overflow-hidden"
                     >
-                        Get the App
-                    </Link>
-                </div>
-            </div>
-        </header>
+                        <motion.div
+                            className="container mx-auto px-4 sm:px-6 py-4 sm:py-6 flex flex-col gap-3 sm:gap-4"
+                        >
+                            {navLinks.map((link, index) => (
+                                <motion.div
+                                    key={link.name}
+                                    variants={mobileItemVariants}
+                                    custom={index}
+                                >
+                                    <Link
+                                        href={link.href}
+                                        className="text-gray-300 hover:text-white transition-colors py-3 sm:py-3.5 text-base sm:text-lg font-inter font-medium block"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        <motion.span
+                                            whileHover={{ x: 5 }}
+                                            className="flex items-center gap-2"
+                                        >
+                                            {link.name}
+                                        </motion.span>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                            <motion.div
+                                variants={mobileItemVariants}
+                                className="mt-2"
+                            >
+                                <motion.div
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <Link
+                                        href="https://play.google.com/store/apps/details?id=com.farishta.app&pcampaignid=web_share"
+                                        target="_blank"
+                                        className="flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-full text-center text-base sm:text-lg font-inter"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        <HiDownload className="w-5 h-5" />
+                                        <span>Get the App</span>
+                                    </Link>
+                                </motion.div>
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.header>
     );
 }
