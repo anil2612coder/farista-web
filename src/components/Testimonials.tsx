@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView, Variants } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 import { RiDoubleQuotesL } from "react-icons/ri";
@@ -95,7 +95,7 @@ export default function Testimonials() {
         setActiveIndex((prevIdx) => (prevIdx - 1 + testimonials.length) % testimonials.length);
     };
 
-    const slideVariants = {
+    const slideVariants: Variants = {
         enter: (dir: 1 | -1) => ({
             opacity: 0,
             x: dir === 1 ? 40 : -40,
@@ -121,7 +121,7 @@ export default function Testimonials() {
             ref={sectionRef}
             className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-[#0a0a0a] overflow-hidden"
         >
-          
+
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
                     className="absolute -top-24 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-emerald-600/10 rounded-full blur-3xl"
@@ -136,7 +136,7 @@ export default function Testimonials() {
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                
+
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -156,14 +156,14 @@ export default function Testimonials() {
                     </p>
                 </motion.div>
 
-               
+
                 <div className="relative top-8 mx-auto">
                     <div
                         className="relative"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                     >
-                       
+
                         <div className="relative">
                             <AnimatePresence mode="wait" custom={direction}>
                                 <motion.div
@@ -175,7 +175,7 @@ export default function Testimonials() {
                                     exit="exit"
                                     className="p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl glass border border-white/10"
                                 >
-                                    
+
                                     <div className="flex items-start justify-between gap-4 mb-4 sm:mb-6">
                                         <div className="flex items-center gap-2">
                                             <RiDoubleQuotesL className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-400/50" />
@@ -186,7 +186,7 @@ export default function Testimonials() {
                                             </div>
                                         </div>
 
-                                         
+
                                         <div className="hidden sm:flex items-center gap-2">
                                             <button
                                                 type="button"
@@ -207,12 +207,12 @@ export default function Testimonials() {
                                         </div>
                                     </div>
 
-                                   
+
                                     <p className="text-base sm:text-lg lg:text-xl text-gray-200 leading-relaxed mb-6 sm:mb-8 font-inter">
                                         “{testimonials[safeIndex].text}”
                                     </p>
 
-                                   
+
                                     <div className="flex items-center justify-between gap-4 relative top-3">
                                         <div className="flex items-center gap-3 sm:gap-4">
                                             <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-linear-to-br from-emerald-600 to-amber-600 flex items-center justify-center text-xl sm:text-2xl">
@@ -251,50 +251,50 @@ export default function Testimonials() {
                             </AnimatePresence>
                         </div>
 
-                   
-                    <div className="flex justify-center gap-2 mt-8">
-                        {testimonials.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => goTo(index)}
-                                className={`w-2 h-2 rounded-full transition-all ${index === activeIndex
-                                    ? "w-8 bg-linear-to-r from-emerald-500 to-amber-500"
-                                    : "bg-gray-600 hover:bg-gray-500"
-                                    }`}
-                                aria-label={`Go to testimonial ${index + 1}`}
-                            />
-                        ))}
-                    </div>
-                </div>
 
-              
-                <motion.div
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    className="mt-12 sm:mt-16 flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12 relative top-4"
-                >
-                    <div className="text-center min-w-[80px]">
-                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">500K+</div>
-                        <div className="text-gray-500 text-xs sm:text-sm">Happy Users</div>
+                        <div className="flex justify-center gap-2 mt-8">
+                            {testimonials.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => goTo(index)}
+                                    className={`w-2 h-2 rounded-full transition-all ${index === activeIndex
+                                        ? "w-8 bg-linear-to-r from-emerald-500 to-amber-500"
+                                        : "bg-gray-600 hover:bg-gray-500"
+                                        }`}
+                                    aria-label={`Go to testimonial ${index + 1}`}
+                                />
+                            ))}
+                        </div>
                     </div>
-                    <div className="hidden sm:block w-px h-10 sm:h-12 bg-gray-800" />
-                    <div className="text-center min-w-[80px]">
-                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">4.9★</div>
-                        <div className="text-gray-500 text-xs sm:text-sm">App Store Rating</div>
-                    </div>
-                    <div className="hidden sm:block w-px h-10 sm:h-12 bg-gray-800" />
-                    <div className="text-center min-w-[80px]">
-                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">50+</div>
-                        <div className="text-gray-500 text-xs sm:text-sm">Countries</div>
-                    </div>
-                    <div className="hidden sm:block w-px h-10 sm:h-12 bg-gray-800" />
-                    <div className="text-center min-w-[80px]">
-                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">10K+</div>
-                        <div className="text-gray-500 text-xs sm:text-sm">Hours of Content</div>
-                    </div>
-                </motion.div>
-            </div>
+
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                        className="mt-12 sm:mt-16 flex flex-wrap justify-center items-center gap-6 sm:gap-8 lg:gap-12 relative top-4"
+                    >
+                        <div className="text-center min-w-[80px]">
+                            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">500K+</div>
+                            <div className="text-gray-500 text-xs sm:text-sm">Happy Users</div>
+                        </div>
+                        <div className="hidden sm:block w-px h-10 sm:h-12 bg-gray-800" />
+                        <div className="text-center min-w-[80px]">
+                            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">4.9★</div>
+                            <div className="text-gray-500 text-xs sm:text-sm">App Store Rating</div>
+                        </div>
+                        <div className="hidden sm:block w-px h-10 sm:h-12 bg-gray-800" />
+                        <div className="text-center min-w-[80px]">
+                            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">50+</div>
+                            <div className="text-gray-500 text-xs sm:text-sm">Countries</div>
+                        </div>
+                        <div className="hidden sm:block w-px h-10 sm:h-12 bg-gray-800" />
+                        <div className="text-center min-w-[80px]">
+                            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">10K+</div>
+                            <div className="text-gray-500 text-xs sm:text-sm">Hours of Content</div>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
         </section>
     );
