@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FaGooglePlay } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 
@@ -36,11 +37,9 @@ export default function Download() {
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section id="download" className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden">
-            {/* Gradient Background */}
+        <section id="download" className="relative pt-12 pb-24 sm:pt-12 sm:pb-20 md:pb-28 lg:pb-32 xl:pt-12 xl:pb-28 overflow-hidden">
             <div className="absolute inset-0 bg-linear-to-br from-emerald-900/30 via-[#0a0a0a] to-amber-900/30" />
 
-            {/* Animated Background Elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <motion.div
                     className="absolute top-0 left-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-emerald-600/20 rounded-full blur-3xl"
@@ -114,7 +113,7 @@ export default function Download() {
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     variants={containerVariants}
-                    className="max-w-4xl mx-auto text-center"
+                    className="mx-auto text-center"
                 >
                     {/* Badge */}
                     <motion.div
@@ -130,7 +129,7 @@ export default function Download() {
                         <span className="text-xs sm:text-sm md:text-base text-emerald-100 font-inter">Download Now</span>
                     </motion.div>
 
-                    {/* Heading */}
+                    
                     <motion.h2
                         variants={itemVariants}
                         className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 text-center font-outfit"
@@ -139,21 +138,20 @@ export default function Download() {
                         <span className="gradient-text block">Journey Today</span>
                     </motion.h2>
 
-                    {/* Description */}
+                   
                     <motion.p
                         variants={itemVariants}
-                        className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12 px-4 font-inter leading-relaxed text-center"
+                        className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300  mx-auto mb-8 sm:mb-10 md:mb-12 px-4 font-inter leading-relaxed text-center relative top-3"
                     >
-                        Download Farishta FM for free and unlock a world of spiritual content.
-                        Available on Android devices.
+                        Download Farishta FM for free and unlock a world of spiritual content. Available on Android devices.
                     </motion.p>
 
-                    {/* Download Buttons */}
+                   
                     <motion.div
                         variants={itemVariants}
-                        className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 justify-center mb-8 sm:mb-10 md:mb-12 px-4"
+                        className="flex flex-col relative top-10 sm:flex-row gap-3 sm:gap-4 md:gap-5 justify-center mb-8 sm:mb-10 md:mb-12 px-4"
                     >
-                        {/* Play Store Button */}
+                       
                         <motion.div
                             whileHover={{ scale: 1.05, y: -5 }}
                             whileTap={{ scale: 0.95 }}
@@ -162,7 +160,7 @@ export default function Download() {
                                 href="https://play.google.com/store/apps/details?id=com.farishta.app&pcampaignid=web_share"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group flex items-center justify-center gap-3 sm:gap-4 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-white text-black rounded-xl sm:rounded-2xl hover:bg-gray-100 transition-all hover:shadow-xl hover:shadow-white/20 font-inter"
+                                className="group flex items-center justify-center gap-3 sm:gap-4 px-3 sm:px-4 md:px-6 py-2 sm:py-2 md:py-3 bg-white text-black rounded-xl sm:rounded-2xl hover:bg-gray-100 transition-all hover:shadow-xl hover:shadow-white/20 font-inter"
                             >
                                 <FaGooglePlay className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10" />
                                 <div className="text-left">
@@ -173,30 +171,19 @@ export default function Download() {
                         </motion.div>
                     </motion.div>
 
-                    {/* QR Code Section */}
+                   
                     <motion.div
                         variants={itemVariants}
-                        className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl glass mb-8 sm:mb-10 md:mb-12"
+                        className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl glass mb-8 sm:mb-10 md:mb-12 relative top-12"
                     >
-                        <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white rounded-lg sm:rounded-xl flex items-center justify-center">
-                            {/* QR Code Placeholder */}
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 grid grid-cols-5 gap-0.5">
-                                {[...Array(25)].map((_, i) => (
-                                    <motion.div
-                                        key={i}
-                                        className={`w-full h-full ${((i * 7) % 3 === 0 || (i * 3) % 5 === 0) ? 'bg-black' : 'bg-white'}`}
-                                        animate={{
-                                            opacity: [1, 0.7, 1],
-                                        }}
-                                        transition={{
-                                            duration: 2,
-                                            repeat: Infinity,
-                                            delay: i * 0.05,
-                                            ease: "easeInOut",
-                                        }}
-                                    />
-                                ))}
-                            </div>
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white rounded-lg sm:rounded-xl flex items-center justify-center overflow-hidden">
+                            <Image
+                                src="/qr.png"
+                                alt="Scan to download Farishta FM app"
+                                width={112}
+                                height={112}
+                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
+                            />
                         </div>
                         <div className="text-center sm:text-left">
                             <div className="text-white font-semibold mb-1 text-sm sm:text-base md:text-lg font-outfit">Scan to Download</div>
@@ -204,10 +191,10 @@ export default function Download() {
                         </div>
                     </motion.div>
 
-                    {/* Features Pills */}
+                 
                     <motion.div
                         variants={itemVariants}
-                        className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-2"
+                        className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-2 relative top-20"
                     >
                         {[
                             "🎵 10,000+ hours of content",
