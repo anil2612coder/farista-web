@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent, Variants } from "framer-motion";
 import { HiMenu, HiX, HiDownload } from "react-icons/hi";
 import { FiMenu, FiX } from "react-icons/fi";
 
@@ -23,7 +23,7 @@ export default function Header() {
         { name: "Download", href: "#download" },
     ];
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -34,7 +34,7 @@ export default function Header() {
         },
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: -20 },
         visible: {
             opacity: 1,
@@ -47,7 +47,7 @@ export default function Header() {
         },
     };
 
-    const mobileMenuVariants = {
+    const mobileMenuVariants: Variants = {
         closed: {
             opacity: 0,
             height: 0,
@@ -68,7 +68,7 @@ export default function Header() {
         },
     };
 
-    const mobileItemVariants = {
+    const mobileItemVariants: Variants = {
         closed: {
             opacity: 0,
             x: -20,
@@ -89,11 +89,10 @@ export default function Header() {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-                isScrolled
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
                     ? "glass py-2 sm:py-3 shadow-lg shadow-purple-500/10"
                     : "bg-transparent py-3 sm:py-4 md:py-4"
-            }`}
+                }`}
         >
             <motion.nav
                 variants={containerVariants}
